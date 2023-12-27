@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 
-@WithMockUser(username = "test", password = "test", authorities = "ROLE_MODERATOR")
+@WithMockUser(username = "test", password = "test", roles = "MODERATOR")
 class UserControllerIT extends BaseIntegrationTest {
 
     @Autowired
@@ -132,7 +132,8 @@ class UserControllerIT extends BaseIntegrationTest {
     void hello() {
 
         mockMvc.perform(get("/api/users/hello")
-                        .with(httpBasic("test", "test")))
+//                        .with(httpBasic("test", "test"))
+                )
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .string("test"));
